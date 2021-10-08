@@ -1,0 +1,19 @@
+#======================================================================
+#	GITIGNORE
+#======================================================================
+
+# OSX desktop services
+**.DS_Store
+
+# pdflatex build files
+*.aux
+*.log
+*.out
+
+# bibtex build files
+*.bbl
+*.blg
+
+
+
+# Fin.
