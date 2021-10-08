@@ -1,0 +1,118 @@
+%======================================================================
+%	MAKEFILE
+%======================================================================
+
+% ----------------------------------------: DOCUMENT DEFINITION
+\ifthenelse{\boolean{PrintVersion}}{
+	\usepackage[top=1in,bottom=1in,left=0.75in,right=1.25in]{geometry}
+}{
+	\usepackage[top=1in,bottom=1in,left=0.75in,right=1.25in]{geometry}
+}
+
+\usepackage[utf8]{inputenc}
+
+
+% ----------------------------------------: MATHEMATICS
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amstext}
+\usepackage{esvect}		% Vector arrow symbols
+\usepackage{siunitx}	% Pretty scientific notations
+
+
+% ----------------------------------------: FORMATTING PACKAGES
+\usepackage{fancyhdr}	% Page header/footer support
+\usepackage{enumitem}	% Enumerations environment
+\usepackage{float}		% Floating figures
+\usepackage{longtable}	% Multipage tables
+\usepackage{listings}	% Formats code using the lstlisting environment
+\usepackage{tcolorbox}	% Beamer-style boxes
+\usepackage{xargs}
+\usepackage{titlesec}	% Section format customization
+\usepackage{array}		% Table support
+\usepackage{cite}		% Citations within the document
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{xtab}
+\usepackage{lastpage}
+
+% Color specification support
+\usepackage{xcolor}
+
+% Strikethrough support
+\usepackage[normalem]{ulem}
+
+% Todo notes support
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+
+% Figure caption support
+\usepackage[labelfont=bf, skip=2pt]{caption}
+
+
+% ----------------------------------------: MISCELLANEOUS
+\usepackage{lipsum}		% Generate lorem ipsum dummy text
+
+
+% ----------------------------------------: SETTINGS
+\graphicspath{ {figures/} }		% Set graphics path
+\sisetup{unitsep=\cdot}			% Scientific notation seperator
+
+% Headers and footers
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Umbrella Corp.}
+\chead{}
+\rhead{Seaborn}
+\lfoot{2021}
+\cfoot{}
+\rfoot{Page \thepage}
+
+
+% ----------------------------------------: FORMAT DEFINITIONS
+% Define specific note formats
+\newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+\newcommandx{\explain}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+
+% Define section formats
+\titleformat{\section}{\normalfont\large\bfseries}{\S\thesection}{1em}{}[{\titlerule[0.6pt]}]
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalfont\normalsize\itseries}{\thesubsubsection}{1em}{}
+
+% Define table column formats
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+% Does nothing, but defines the command so the print-optimized version
+% will ignore \href tags which are defined later
+\newcommand{\href}[1]{#1}
+
+% Define hyperlink behavior
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,		% false: boxed links; true: colored links
+	linkcolor=blue,			% internal links
+	citecolor=green,		% links to bibliography
+	filecolor=magenta,		% file links
+	urlcolor=cyan			% external links
+}
+\ifthenelse{\boolean{PrintVersion}}{
+\hypersetup{
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black}
+}{}
+
+% Force longer URLs to wrap-around
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%  save the current one
+	\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
+	\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
+	\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
+	\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+	\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
+	\do\Y\do\Z}
+
+
+
+% Fin.

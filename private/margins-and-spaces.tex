@@ -1,0 +1,30 @@
+%======================================================================
+%	MARGINS & SPACES
+%======================================================================
+
+\setlength{\marginparwidth}{0pt}		% Width of margin notes
+\setlength{\marginparsep}{0pt}			% Width of space between body text and margin notes
+\setlength{\oddsidemargin}{0.125in}		% Adds 1/8 in. to the left of all pages when "oneside" printing
+\setlength{\textwidth}{6.375in}			% Assuming 8.5x11
+% Adds 1/8 in. to binding side of all even-numbered pages when the "twoside" printing option is selected
+\setlength{\evensidemargin}{0.125in}
+\raggedbottom
+
+\setlength{\parskip}{\medskipamount}	% Paragraph spacing
+\renewcommand{\baselinestretch}{1}		% This is the default line space setting
+
+% By default, each chapter will start on a recto (right-hand side)
+% page.  We also force each section of the front pages to start on 
+% a recto page by inserting \cleardoublepage commands.
+% In many cases, this will require that the verso page be
+% blank and, while it should be counted, a page number should not be
+% printed.  The following statements ensure a page number is not
+% printed on an otherwise blank verso page.
+\let\origdoublepage\cleardoublepage
+\newcommand{\clearemptydoublepage}{%
+  \clearpage{\pagestyle{empty}\origdoublepage}}
+\let\cleardoublepage\clearemptydoublepage
+
+
+
+% Fin.

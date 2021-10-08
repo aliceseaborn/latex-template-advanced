@@ -1,0 +1,85 @@
+%======================================================================
+%	DOCUMENT
+%======================================================================
+
+% ----------------------------------------: INIT PREAMBLE
+\documentclass[letterpaper,12pt,titlepage,oneside,final]{book}
+% \documentclass[letterpaper,12pt,titlepage,openright,twoside,final]{book}
+
+\usepackage{ifthen}
+\newboolean{PrintVersion}
+\setboolean{PrintVersion}{false}
+
+\input{preamble}
+
+\input{private/margins-and-spaces}
+
+\fancypagestyle{myFancy}{%
+	\fancyhf{}% Clear header and footer
+	\fancyhead[LE,RO]{\bfseries\nouppercase{\rightmark}}
+	\fancyhead[LO,RE]{\bfseries\nouppercase{\leftmark}}
+	\fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+	\fancyfoot[L]{Author Name}
+	\renewcommand{\headrulewidth}{0.4pt}
+	\renewcommand{\footrulewidth}{0.1pt}
+}
+
+
+% ----------------------------------------: LOGICAL DOCUMENT
+\begin{document}
+
+% Cover page
+\newcommand{\thesisauthor}{Author Name}
+\newcommand{\thesistitlecoverpage}{Coverpage Paper Title}
+\newcommand{\academicprogram}{Academic Program}
+\newcommand{\college}{Name of College}
+\newcommand{\university}{Name of University}
+\newcommand{\academicdegree}{Master of Science}
+\input{private/00-frontpage}
+
+% Abstract & Acknowledgements
+\input{parts/00-abstract}
+\input{parts/01-acknowledgements}
+
+% Tables and lists
+\input{private/01-toc-lot-lof}
+
+% Glossary
+\input{parts/glossary.tex}  
+
+% Change page numbering back to Arabic numerals
+\pagenumbering{arabic}
+
+% Redefine the plain page style
+\fancypagestyle{plain}{
+	\fancyhf{}
+	\fancyfoot[R]{Page \thepage\ of \pageref{LastPage}}
+	\fancyfoot[L]{Author Name}
+	\renewcommand{\headrulewidth}{0pt}
+	\renewcommand{\footrulewidth}{0.1pt}
+}
+\pagestyle{myFancy}
+
+% Main body
+\input{parts/02-introduction}
+\input{parts/99-conclusion}
+
+% Bibliography
+\bibliographystyle{plain}
+\ifthenelse{\boolean{PrintVersion}}{
+	\cleardoublepage
+}{
+	\clearpage
+}
+\phantomsection
+
+\renewcommand{\bibname}{Bibliography}
+\addcontentsline{toc}{chapter}{\textbf{References}}
+\bibliography{bib/main}
+
+
+\end{document}
+
+
+
+% Fin.
